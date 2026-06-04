@@ -5,11 +5,13 @@ import { Reorder } from "framer-motion";
 import { PlusCircle } from "lucide-react";
 import CustomItem from "./CustomItem";
 import { useResumeStore } from "@/store/useResumeStore";
+import { useTranslations } from "@/i18n/compat/client";
 import { CustomItem as CustomItemType } from "@/types/resume";
 
 const CustomPanel = memo(({ sectionId }: { sectionId: string }) => {
   const { addCustomItem, updateCustomData, activeResume } = useResumeStore();
   const { customData } = activeResume || {};
+  const t = useTranslations("workbench.customPanel");
   const items = customData?.[sectionId] || [];
   const handleCreateItem = () => {
     addCustomItem(sectionId);
@@ -36,7 +38,7 @@ const CustomPanel = memo(({ sectionId }: { sectionId: string }) => {
 
         <Button onClick={handleCreateItem} className={cn("w-full")}>
           <PlusCircle className="w-4 h-4 mr-2" />
-          添加
+          {t("addButton")}
         </Button>
       </Reorder.Group>
     </div>

@@ -101,7 +101,7 @@ const LayoutControls = memo(
           </TooltipTrigger>
           <TooltipContent>
             <p className="text-xs">
-              {sidePanelCollapsed ? "展开侧边栏" : "收起侧边栏"}
+              {sidePanelCollapsed ? "Expand side panel" : "Collapse side panel"}
             </p>
           </TooltipContent>
         </Tooltip>
@@ -127,7 +127,7 @@ const LayoutControls = memo(
           </TooltipTrigger>
           <TooltipContent>
             <p className="text-xs">
-              {editPanelCollapsed ? "展开编辑面板" : "收起编辑面板"}
+              {editPanelCollapsed ? "Expand edit panel" : "Collapse edit panel"}
             </p>
           </TooltipContent>
         </Tooltip>
@@ -151,7 +151,7 @@ const LayoutControls = memo(
           </TooltipTrigger>
           <TooltipContent>
             <p className="text-xs">
-              {previewPanelCollapsed ? "展开预览面板" : "收起预览面板"}
+              {previewPanelCollapsed ? "Expand preview" : "Collapse preview"}
             </p>
           </TooltipContent>
         </Tooltip>

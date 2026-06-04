@@ -361,7 +361,8 @@
       "configured": "Yedeklendi",
       "notConfigured": "Yedeklenmedi",
       "clickToConfigure": "Yapılandırmak için tıklayın"
-    }
+    },
+    "pageBreak": "Sayfa {page} sonu"
   },
   "workbench": {
     "sidePanel": {
@@ -461,7 +462,12 @@
         "show": "Göster",
         "hide": "Gizle"
       },
-      "githubContributions": "GitHub Katkıları"
+      "githubContributions": "GitHub Katkıları",
+      "placeholders": {
+        "fieldFallback": "{label} bilgisini girin",
+        "githubToken": "GitHub erişim token'ınızı yapıştırın",
+        "githubUsername": "GitHub kullanıcı adınız"
+      }
     },
     "experiencePanel": {
       "title": "İş Deneyimi",
@@ -608,6 +614,49 @@
       "width": "Genişlik (%)",
       "delete": "Sil",
       "empty": "Henüz görsel yok. Lütfen görsel yükleyin veya yapıştırın."
+    },
+    "selfEvaluationPanel": {
+      "placeholder": "Güçlü yönlerinizi ve ekibe kattıklarınızı vurgulayan kısa bir özet yazın…"
+    },
+    "skillsPanel": {
+      "placeholder": "Teknik becerilerinizi, araçları ve uzmanlık alanlarınızı listeleyin…"
+    },
+    "customPanel": {
+      "addButton": "Ekle",
+      "untitledItem": "Adsız öge",
+      "labels": {
+        "title": "Başlık",
+        "subtitle": "Alt başlık",
+        "dateRange": "Tarih aralığı",
+        "description": "Açıklama"
+      },
+      "placeholders": {
+        "title": "Başlık",
+        "subtitle": "Alt başlık",
+        "dateRange": "ör. 2023.01 - 2024.01",
+        "description": "Bu öge için detay yazın…"
+      },
+      "fallback": {
+        "untitledModule": "Adsız modül"
+      }
+    },
+    "fallbacks": {
+      "experienceCompany": "Adsız şirket",
+      "projectName": "Adsız proje",
+      "educationSchool": "Okul belirtilmemiş"
+    },
+    "editPanel": {
+      "tipFocusText": "Düzenlemeye başlamak için bir metin alanına tıklayın"
+    },
+    "align": {
+      "left": "Sola hizala",
+      "center": "Ortala",
+      "right": "Sağa hizala"
+    },
+    "mobileNav": {
+      "content": "İçerik",
+      "style": "Stil",
+      "preview": "Önizleme"
     }
   },
   "field": {

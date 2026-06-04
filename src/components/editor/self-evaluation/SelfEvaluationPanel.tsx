@@ -1,10 +1,12 @@
 import { useResumeStore } from "@/store/useResumeStore";
+import { useTranslations } from "@/i18n/compat/client";
 import { cn } from "@/lib/utils";
 import Field from "../Field";
 
 const SelfEvaluationPanel = () => {
     const { activeResume, updateSelfEvaluationContent } = useResumeStore();
     const selfEvaluationContent = activeResume?.selfEvaluationContent ?? "";
+    const t = useTranslations("workbench.selfEvaluationPanel");
     const handleChange = (value: string) => {
         updateSelfEvaluationContent(value);
     };
@@ -21,7 +23,7 @@ const SelfEvaluationPanel = () => {
                 value={selfEvaluationContent}
                 onChange={handleChange}
                 type="editor"
-                placeholder="描述你的自我评价..."
+                placeholder={t("placeholder")}
             />
         </div>
     );

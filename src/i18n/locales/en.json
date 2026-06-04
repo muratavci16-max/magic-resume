@@ -361,7 +361,8 @@
       "configured": "Backed up",
       "notConfigured": "Not backed up",
       "clickToConfigure": "Click to configure"
-    }
+    },
+    "pageBreak": "End of page {page}"
   },
   "workbench": {
     "sidePanel": {
@@ -461,7 +462,12 @@
         "show": "Show",
         "hide": "Hide"
       },
-      "githubContributions": "GitHub Contributions"
+      "githubContributions": "GitHub Contributions",
+      "placeholders": {
+        "fieldFallback": "Enter {label}",
+        "githubToken": "Paste your GitHub access token",
+        "githubUsername": "Your GitHub username"
+      }
     },
     "experiencePanel": {
       "title": "Work Experience",
@@ -608,6 +614,49 @@
       "width": "Width (%)",
       "delete": "Delete",
       "empty": "No images yet. Please upload or paste images."
+    },
+    "selfEvaluationPanel": {
+      "placeholder": "Write a short summary highlighting your strengths and what you bring to a team…"
+    },
+    "skillsPanel": {
+      "placeholder": "List your hard skills, tools and areas of expertise…"
+    },
+    "customPanel": {
+      "addButton": "Add",
+      "untitledItem": "Untitled item",
+      "labels": {
+        "title": "Title",
+        "subtitle": "Subtitle",
+        "dateRange": "Date range",
+        "description": "Details"
+      },
+      "placeholders": {
+        "title": "Title",
+        "subtitle": "Subtitle",
+        "dateRange": "e.g. 2023.01 - 2024.01",
+        "description": "Describe this item…"
+      },
+      "fallback": {
+        "untitledModule": "Untitled module"
+      }
+    },
+    "fallbacks": {
+      "experienceCompany": "Untitled company",
+      "projectName": "Untitled project",
+      "educationSchool": "School not provided"
+    },
+    "editPanel": {
+      "tipFocusText": "Click on a text area to start editing"
+    },
+    "align": {
+      "left": "Align left",
+      "center": "Align center",
+      "right": "Align right"
+    },
+    "mobileNav": {
+      "content": "Content",
+      "style": "Style",
+      "preview": "Preview"
     }
   },
   "field": {

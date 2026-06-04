@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FileText, Palette, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useResumeStore } from "@/store/useResumeStore";
+import { useTranslations } from "@/i18n/compat/client";
 import { EditPanel } from "@/components/editor/EditPanel";
 import { SidePanel } from "@/components/editor/SidePanel";
 import PreviewPanel from "@/components/preview";
@@ -15,6 +16,8 @@ type TabType = "content" | "style" | "preview";
 export function MobileWorkbench() {
   const [activeTab, setActiveTab] = useState<TabType>("content");
   const { activeResume, setActiveSection } = useResumeStore();
+  const tBasic = useTranslations("workbench.basicPanel");
+  const tNav = useTranslations("workbench.mobileNav");
   const { activeSection, menuSections } = activeResume || {};
 
   // 渲染底部导航项
@@ -59,7 +62,7 @@ export function MobileWorkbench() {
               <div className="border-b bg-background/95 backdrop-blur z-10">
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex p-2 space-x-2">
-                    {/* 基础信息 */}
+                    {/* Profile / basic info */}
                     <button
                       onClick={() => setActiveSection("basic")}
                       className={cn(
@@ -69,8 +72,10 @@ export function MobileWorkbench() {
                           : "bg-background text-muted-foreground border-border hover:bg-muted"
                       )}
                     >
-                      <span className="mr-1.5">👤</span>
-                      基本信息
+                      <span className="mr-1.5 inline-flex items-center">
+                        <SectionIcon id="basic" className="w-3.5 h-3.5" />
+                      </span>
+                      {tBasic("title")}
                     </button>
                     
                     {/* 其他模块 */}
@@ -142,9 +147,9 @@ export function MobileWorkbench() {
 
       {/* 底部导航栏 */}
       <div className="h-16 border-t bg-background flex items-center justify-around relative shadow-[0_-1px_3px_rgba(0,0,0,0.05)] z-50">
-        {renderNavItem("content", <FileText className="w-5 h-5" />, "内容")}
-        {renderNavItem("style", <Palette className="w-5 h-5" />, "样式")}
-        {renderNavItem("preview", <Eye className="w-5 h-5" />, "预览")}
+        {renderNavItem("content", <FileText className="w-5 h-5" />, tNav("content"))}
+        {renderNavItem("style", <Palette className="w-5 h-5" />, tNav("style"))}
+        {renderNavItem("preview", <Eye className="w-5 h-5" />, tNav("preview"))}
       </div>
     </div>
   );

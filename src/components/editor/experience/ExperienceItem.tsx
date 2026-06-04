@@ -75,6 +75,7 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
   const dragControls = useDragControls();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const { updateExperience, deleteExperience } = useResumeStore();
+  const tFallback = useTranslations("workbench.fallbacks");
   const [isUpdating, setIsUpdating] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
@@ -153,7 +154,7 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
                 "text-foreground"
               )}
             >
-              {experience.company || "家里蹲公司"}
+              {experience.company || tFallback("experienceCompany")}
             </h3>
           </div>
           <div className="flex items-center gap-2 ml-4 shrink-0">
