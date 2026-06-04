@@ -2,8 +2,8 @@ import { ResumeTemplate } from "@/types/template";
 
 export const creativeConfig: ResumeTemplate = {
   id: "creative",
-  name: "创意模板",
-  description: "视觉错落设计，灵动活泼展现个性",
+  name: "Creative",
+  description: "Visual contrast design, vibrant and personalized",
   thumbnail: "creative",
   layout: "creative",
   colorScheme: {

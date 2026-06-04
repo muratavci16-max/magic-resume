@@ -2,8 +2,8 @@ import { ResumeTemplate } from "@/types/template";
 
 export const elegantConfig: ResumeTemplate = {
   id: "elegant",
-  name: "优雅模板",
-  description: "居中标题单列设计，具有高级感的分隔线",
+  name: "Elegant",
+  description: "Centered title single-column design, with a touch of elegance",
   thumbnail: "elegant",
   layout: "elegant",
   colorScheme: {

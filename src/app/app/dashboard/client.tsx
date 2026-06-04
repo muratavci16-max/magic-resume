@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Moon, Sun } from "lucide-react";
 import { IconResumes, IconTemplates, IconSettings, IconAI } from "@/components/shared/icons/SidebarIcons";
 import { usePathname, useRouter } from "@/lib/navigation";
 import {
@@ -21,6 +22,8 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import Logo from "@/components/shared/Logo";
+import ThemeToggle from "@/components/shared/ThemeToggle";
+import LanguageSwitch from "@/components/shared/LanguageSwitch";
 import { useLocale, useTranslations } from "@/i18n/compat/client";
 
 interface MenuItem {
@@ -169,8 +172,17 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <SidebarFooter />
         </Sidebar>
         <main className="flex-1 flex flex-col">
-          <div className="p-2">
+          <div className="h-14 px-4 flex items-center justify-between border-b border-border/40 bg-background/60 backdrop-blur-sm sticky top-0 z-10">
             <SidebarTrigger />
+            <div className="flex items-center gap-1">
+              <LanguageSwitch />
+              <ThemeToggle>
+                <div className="w-9 h-9 relative cursor-pointer rounded-md hover:bg-accent/60 flex items-center justify-center transition-colors">
+                  <Sun className="h-[1.1rem] w-[1.1rem] absolute inset-0 m-auto rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="h-[1.1rem] w-[1.1rem] absolute inset-0 m-auto rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                </div>
+              </ThemeToggle>
+            </div>
           </div>
           <div className="flex-1">{children}</div>
         </main>

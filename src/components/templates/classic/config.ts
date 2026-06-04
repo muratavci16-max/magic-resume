@@ -2,8 +2,8 @@ import { ResumeTemplate } from "@/types/template";
 
 export const classicConfig: ResumeTemplate = {
   id: "classic",
-  name: "经典模板",
-  description: "传统简约的简历布局，适合大多数求职场景",
+  name: "Classic",
+  description: "Traditional and minimalist layout, suitable for most job applications",
   thumbnail: "classic",
   layout: "classic",
   colorScheme: {
