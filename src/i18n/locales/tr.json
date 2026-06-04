@@ -902,5 +902,71 @@
     },
     "menuLabel": "ATS Analizi",
     "menuDescription": "CV'nizi ATS'ye göre puanlayın"
+  },
+  "jobMatch": {
+    "menuLabel": "İlana Uygun Düzenle",
+    "menuDescription": "CV'nizi seçtiğiniz ilana göre uyarlayın",
+    "expanded": {
+      "title": "Modül durumu",
+      "subtitle": "Zorunlu modüller dolu olmadan ilerleyemezsiniz",
+      "linkedinLabel": "İlan bağlantısı veya açıklaması",
+      "linkedinPlaceholder": "LinkedIn ilan bağlantısını veya ilanın açıklamasını buraya yapıştırın",
+      "requiredBadge": "Zorunlu",
+      "optionalBadge": "Opsiyonel",
+      "status": {
+        "filled": "Dolu",
+        "missing": "Eksik",
+        "optionalMissing": "Opsiyonel — eklenmedi"
+      },
+      "primaryCta": "İlana göre düzenle",
+      "missingRequired": "Devam etmek için yukarıdaki zorunlu modülleri doldurun",
+      "missingJobInput": "Devam etmek için ilan açıklamasını ekleyin"
+    },
+    "dialog": {
+      "title": "İlana göre düzenle",
+      "subtitle": "AI her modül için iyileştirme önerir. Adınız, şirket adlarınız, okullarınız ve tarihleriniz değiştirilmez.",
+      "loading": "İlan analiz ediliyor ve öneriler hazırlanıyor…",
+      "loadingHint": "AI sağlayıcınıza bağlı olarak genellikle 10–20 saniye sürer.",
+      "jobSummaryTitle": "İlan özeti",
+      "jobSummaryEmpty": "Belirgin bir özet bulunamadı",
+      "keyRequirementsTitle": "Aranan başlıca özellikler",
+      "softSkillsTitle": "Sözü edilen kişisel beceriler",
+      "preservedNotice": "Profil bilgileriniz (ad, iletişim, fotoğraf) değiştirilmez.",
+      "originalLabel": "Mevcut",
+      "proposedLabel": "AI önerisi",
+      "rationaleLabel": "Bu değişikliğin nedeni",
+      "actions": {
+        "accept": "Onayla",
+        "reject": "Reddet",
+        "accepted": "Onaylandı",
+        "rejected": "Reddedildi",
+        "applyAll": "Onaylananları uygula",
+        "applyAllPending": "Tümünü değiştir",
+        "regenerate": "Yeniden oluştur",
+        "close": "Kapat"
+      },
+      "noProposal": "Bu modül için öneri üretilmedi.",
+      "appliedToast": "CV ilana göre güncellendi",
+      "noChangesToast": "Hiçbir öneri onaylanmadı — değişiklik uygulanmadı"
+    },
+    "sections": {
+      "basic": "Profil",
+      "selfEvaluation": "Özet",
+      "experience": "Deneyim",
+      "education": "Eğitim",
+      "skills": "Beceriler",
+      "projects": "Projeler",
+      "certificates": "Sertifikalar"
+    },
+    "error": {
+      "generic": "CV ilana göre düzenlenemedi. Lütfen tekrar deneyin.",
+      "parse": "AI yanıtı işlenemedi. Lütfen tekrar deneyin.",
+      "configRequired": "Önce AI Ayarları'ndan bir sağlayıcı bağlayın"
+    },
+    "missingConfig": {
+      "title": "AI Bağlantısı Gerekli",
+      "description": "İlana göre düzenleme, yapılandırdığınız AI sağlayıcısı tarafından çalıştırılır. Devam etmek için AI Ayarları'ndan bir sağlayıcı bağlayın.",
+      "cta": "AI Ayarlarını Aç"
+    }
   }
 }
