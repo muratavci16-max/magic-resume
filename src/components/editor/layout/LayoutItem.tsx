@@ -4,6 +4,7 @@ import { Eye, EyeOff, GripVertical, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MenuSection } from "@/types/resume";
 import { useTranslations } from "@/i18n/compat/client";
+import { SectionIcon } from "./SectionIcon";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -53,11 +54,12 @@ const LayoutItem = ({
         <div className="flex items-center p-3 pl-[32px] space-x-3">
           <span
             className={cn(
-              "text-lg  ml-[12px]",
-              "text-muted-foreground group-hover:text-foreground transition-colors"
+              "ml-[12px] inline-flex items-center justify-center w-7 h-7 rounded-md bg-secondary/60",
+              "text-muted-foreground group-hover:text-foreground transition-colors",
+              activeSection === item.id && "bg-primary/10 text-primary"
             )}
           >
-            {item.icon}
+            <SectionIcon id={item.id} />
           </span>
           <span className={cn("text-sm flex-1 cursor-pointer")}>
             {item.title}
@@ -109,11 +111,12 @@ const LayoutItem = ({
         <div className="flex flex-1 items-center">
           <span
             className={cn(
-              "text-lg mr-2",
-              "text-muted-foreground group-hover:text-foreground transition-colors"
+              "mr-2 inline-flex items-center justify-center w-7 h-7 rounded-md bg-secondary/60",
+              "text-muted-foreground group-hover:text-foreground transition-colors",
+              activeSection === item.id && "bg-primary/10 text-primary"
             )}
           >
-            {item.icon}
+            <SectionIcon id={item.id} />
           </span>
           <span className="text-sm flex-1">{item.title}</span>
           <motion.button

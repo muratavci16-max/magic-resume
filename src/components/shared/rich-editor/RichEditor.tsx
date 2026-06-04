@@ -661,15 +661,22 @@ const RichTextEditor = ({
             <Button
               type="button"
               size="sm"
-              variant="outline"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 onPolish();
               }}
-              className="h-8 px-3 text-xs gap-1.5 ml-1 border-primary/20 hover:border-primary/40 text-primary hover:bg-primary/5 transition-all duration-300 group"
+              className={cn(
+                "h-8 px-3 text-xs gap-1.5 ml-1 border-0 font-medium",
+                "bg-gradient-to-r from-brand-purple to-brand-purple-soft text-white",
+                "shadow-sm shadow-brand-purple/25",
+                "hover:from-brand-purple/95 hover:to-brand-purple-soft/95 hover:text-white",
+                "hover:shadow-md hover:shadow-brand-purple/30",
+                "active:scale-95",
+                "transition-all duration-200 group"
+              )}
             >
-              <Wand2 className="h-3 w-3 group-hover:rotate-12 transition-transform" />
+              <Wand2 className="h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
               {t("aiPolish")}
             </Button>
           )}
