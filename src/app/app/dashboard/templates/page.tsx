@@ -268,7 +268,7 @@ const TemplatesPage = () => {
   };
 
   return (
-    <ScrollArea className="h-[calc(100vh-2rem)] w-full">
+    <ScrollArea className="h-[calc(100vh-3.5rem)] w-full">
       <div className="w-full max-w-[1600px] mx-auto py-8 px-4 sm:px-6">
         <div className="flex flex-col space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

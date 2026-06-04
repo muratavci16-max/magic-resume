@@ -2,8 +2,8 @@ import { ResumeTemplate } from "@/types/template";
 
 export const timelineConfig: ResumeTemplate = {
   id: "timeline",
-  name: "时间线风格",
-  description: "时间线布局，突出经历的时间顺序",
+  name: "Timeline Layout",
+  description: "Timeline style, emphasizing chronological order of experiences",
   thumbnail: "timeline",
   layout: "timeline",
   colorScheme: {

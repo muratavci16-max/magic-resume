@@ -278,7 +278,7 @@ export const ResumeWorkbench = () => {
     };
 
     return (
-        <ScrollArea className="h-[calc(100vh-2rem)] w-full">
+        <ScrollArea className="h-[calc(100vh-3.5rem)] w-full">
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

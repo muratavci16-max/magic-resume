@@ -3,7 +3,7 @@ import { ResumeTemplate } from "@/types/template";
 export const editorialConfig: ResumeTemplate = {
   id: "editorial",
   name: "Editorial",
-  description: "高端画报风模板，大号精美衬线体与窄体无衬线的完美结合，附带专属侧边时光轴设计，极具奢华感。",
+  description: "Luxurious blend of bold serif and refined sans-serif typography with a dedicated side timeline.",
   thumbnail: "editorial",
   layout: "editorial",
   colorScheme: {

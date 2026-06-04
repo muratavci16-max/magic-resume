@@ -209,8 +209,8 @@ export const useResumeStore = create(
             ? document.cookie
                 .split("; ")
                 .find((row) => row.startsWith("NEXT_LOCALE="))
-                ?.split("=")[1] || "zh"
-            : "zh";
+                ?.split("=")[1] || "tr"
+            : "tr";
 
         let initialResumeData: any;
         if (isBlank) {
@@ -232,7 +232,7 @@ export const useResumeStore = create(
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           templateId: template?.id,
-          title: `${locale === "en" ? "New Resume" : "新建简历"} ${id.slice(
+          title: `${locale === "en" ? "New Resume" : "Yeni CV"} ${id.slice(
             0,
             6
           )}`,
