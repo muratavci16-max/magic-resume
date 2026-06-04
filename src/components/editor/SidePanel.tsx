@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Layout, Type, SpaceIcon, Palette, Zap, BarChart3, ArrowRight } from "lucide-react";
 import { SectionIcon } from "./layout/SectionIcon";
+import { JobMatchEntry } from "@/components/job-match/JobMatchEntry";
 import debounce from "lodash/debounce";
 import { useTranslations } from "@/i18n/compat/client";
 import { useATSStore } from "@/store/useATSStore";
@@ -188,6 +189,9 @@ export function SidePanel() {
             <ArrowRight className="w-4 h-4 text-brand-purple shrink-0" />
           </div>
         </motion.button>
+
+        {/* Tailor to Job entry — same size, just below ATS */}
+        <JobMatchEntry />
 
         <SettingCard icon={Layout} title={t("layout.title")}>
           <LayoutSetting

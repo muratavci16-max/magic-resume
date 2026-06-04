@@ -902,5 +902,71 @@
     },
     "menuLabel": "ATS Analyzer",
     "menuDescription": "Score your resume against ATS"
+  },
+  "jobMatch": {
+    "menuLabel": "Tailor to Job",
+    "menuDescription": "Adapt your resume to a specific posting",
+    "expanded": {
+      "title": "Section readiness",
+      "subtitle": "Required sections must be filled before tailoring",
+      "linkedinLabel": "Job posting URL or description",
+      "linkedinPlaceholder": "Paste a LinkedIn job posting URL or full description here",
+      "requiredBadge": "Required",
+      "optionalBadge": "Optional",
+      "status": {
+        "filled": "Filled",
+        "missing": "Missing",
+        "optionalMissing": "Optional — not provided"
+      },
+      "primaryCta": "Tailor to this job",
+      "missingRequired": "Fill the required sections above to continue",
+      "missingJobInput": "Add the job description to continue"
+    },
+    "dialog": {
+      "title": "Tailor to job posting",
+      "subtitle": "AI proposes refined copy for each section. Your name, companies, schools and dates are preserved.",
+      "loading": "Analyzing the posting and preparing proposals…",
+      "loadingHint": "This usually takes 10–20 seconds depending on your AI provider.",
+      "jobSummaryTitle": "Job overview",
+      "jobSummaryEmpty": "No specific summary detected",
+      "keyRequirementsTitle": "Key requirements",
+      "softSkillsTitle": "Soft skills mentioned",
+      "preservedNotice": "Your profile (name, contact, photo) is never modified.",
+      "originalLabel": "Current",
+      "proposedLabel": "AI proposal",
+      "rationaleLabel": "Why this change",
+      "actions": {
+        "accept": "Accept",
+        "reject": "Reject",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "applyAll": "Apply all accepted",
+        "applyAllPending": "Apply all & close",
+        "regenerate": "Regenerate",
+        "close": "Close"
+      },
+      "noProposal": "No changes proposed for this section.",
+      "appliedToast": "Resume tailored to the posting",
+      "noChangesToast": "No proposals accepted — nothing applied"
+    },
+    "sections": {
+      "basic": "Profile",
+      "selfEvaluation": "Summary",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "certificates": "Certificates"
+    },
+    "error": {
+      "generic": "Could not tailor the resume. Please try again.",
+      "parse": "Could not parse AI response. Try once more.",
+      "configRequired": "Connect an AI provider in AI Settings first"
+    },
+    "missingConfig": {
+      "title": "AI Connection Required",
+      "description": "Tailoring is powered by your configured AI provider. Connect a provider in AI Settings to continue.",
+      "cta": "Open AI Settings"
+    }
   }
 }

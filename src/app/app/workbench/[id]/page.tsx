@@ -10,6 +10,7 @@ import PreviewDock from "@/components/preview/PreviewDock";
 import { MobileWorkbench } from "@/components/mobile/MobileWorkbench";
 import { ATSAnalyzerPanel } from "@/components/ats/ATSAnalyzerPanel";
 import { useATSStore } from "@/store/useATSStore";
+import { JobMatchDialog } from "@/components/job-match/JobMatchDialog";
 import { PanelResizeHandle } from "react-resizable-panels";
 import {
   ResizableHandle,
@@ -382,6 +383,9 @@ export default function Home() {
       <div className="md:hidden h-[calc(100vh-64px)]">
         <MobileWorkbench />
       </div>
+
+      {/* Tailor-to-Job dialog */}
+      <JobMatchDialog />
     </main>
   );
 }
