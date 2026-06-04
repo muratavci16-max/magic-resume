@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Layout, Type, SpaceIcon, Palette, Zap, BarChart3, ArrowRight } from "lucide-react";
+import { SectionIcon } from "./layout/SectionIcon";
 import debounce from "lodash/debounce";
 import { useTranslations } from "@/i18n/compat/client";
 import { useATSStore } from "@/store/useATSStore";
@@ -159,6 +160,35 @@ export function SidePanel() {
       animate={{ x: 0, opacity: 1 }}
     >
       <div className="p-4 space-y-4">
+        {/* ATS Analyzer entry — pinned at top */}
+        <motion.button
+          type="button"
+          onClick={openATS}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.99 }}
+          className={cn(
+            "w-full text-left rounded-xl p-4 border transition-all relative overflow-hidden",
+            "border-brand-purple/20 bg-gradient-to-br from-brand-purple/[0.04] via-card to-brand-orange/[0.04]",
+            "hover:border-brand-purple/40 hover:shadow-md hover:shadow-brand-purple/10",
+            "focus:outline-none focus:ring-2 focus:ring-brand-purple/40"
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-brand-purple to-brand-orange text-white flex items-center justify-center shadow-sm">
+              <BarChart3 className="w-4 h-4" strokeWidth={2} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-medium text-sm text-foreground">
+                {atsT("menuLabel")}
+              </div>
+              <div className="text-xs text-muted-foreground mt-0.5 truncate">
+                {atsT("menuDescription")}
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-brand-purple shrink-0" />
+          </div>
+        </motion.button>
+
         <SettingCard icon={Layout} title={t("layout.title")}>
           <LayoutSetting
             menuSections={menuSections}
@@ -197,9 +227,11 @@ export function SidePanel() {
                         };
                         updateMenuSections([...menuSections, newSection]);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-accent transition-colors text-left"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm rounded-md hover:bg-accent transition-colors text-left"
                     >
-                      <span className="text-lg">{section.icon}</span>
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-secondary/60 text-muted-foreground">
+                        <SectionIcon id={section.id} className="w-3.5 h-3.5" />
+                      </span>
                       <span>{t(`layout.standardSections.${section.titleKey}`)}</span>
                     </button>
                   ))}
@@ -793,35 +825,6 @@ export function SidePanel() {
             </div>
           </div>
         </SettingCard>
-
-        {/* ATS Analyzer entry */}
-        <motion.button
-          type="button"
-          onClick={openATS}
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.99 }}
-          className={cn(
-            "w-full text-left rounded-xl p-4 border transition-all relative overflow-hidden",
-            "border-brand-purple/20 bg-gradient-to-br from-brand-purple/[0.04] via-card to-brand-orange/[0.04]",
-            "hover:border-brand-purple/40 hover:shadow-md hover:shadow-brand-purple/10",
-            "focus:outline-none focus:ring-2 focus:ring-brand-purple/40"
-          )}
-        >
-          <div className="flex items-center gap-3">
-            <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-brand-purple to-brand-orange text-white flex items-center justify-center shadow-sm">
-              <BarChart3 className="w-4 h-4" strokeWidth={2} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-medium text-sm text-foreground">
-                {atsT("menuLabel")}
-              </div>
-              <div className="text-xs text-muted-foreground mt-0.5 truncate">
-                {atsT("menuDescription")}
-              </div>
-            </div>
-            <ArrowRight className="w-4 h-4 text-brand-purple shrink-0" />
-          </div>
-        </motion.button>
       </div>
     </motion.div>
   );

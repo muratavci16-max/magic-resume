@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useResumeStore } from "@/store/useResumeStore";
 import { cn } from "@/lib/utils";
 import BasicPanel from "./basic/BasicPanel";
+import { SectionIcon } from "./layout/SectionIcon";
 import EducationPanel from "./education/EducationPanel";
 import ProjectPanel from "./project/ProjectPanel";
 import ExperiencePanel from "./experience/ExperiencePanel";
@@ -63,9 +64,9 @@ export function EditPanel() {
             "bg-card border-border"
           )}
         >
-          <div className="flex items-center gap-2">
-            <span className="text-lg">
-              {menuSections?.find((s) => s.id === activeSection)?.icon}
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 text-primary">
+              <SectionIcon id={activeSection} className="w-4 h-4" />
             </span>
 
             {/* 如果是基本信息的展示话展示div */}

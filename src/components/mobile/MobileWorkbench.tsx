@@ -8,6 +8,7 @@ import { EditPanel } from "@/components/editor/EditPanel";
 import { SidePanel } from "@/components/editor/SidePanel";
 import PreviewPanel from "@/components/preview";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { SectionIcon } from "@/components/editor/layout/SectionIcon";
 
 type TabType = "content" | "style" | "preview";
 
@@ -86,7 +87,9 @@ export function MobileWorkbench() {
                               : "bg-background text-muted-foreground border-border hover:bg-muted"
                           )}
                         >
-                          <span className="mr-1.5">{section.icon}</span>
+                          <span className="mr-1.5 inline-flex items-center">
+                            <SectionIcon id={section.id} className="w-3.5 h-3.5" />
+                          </span>
                           {section.title}
                         </button>
                       ))}
