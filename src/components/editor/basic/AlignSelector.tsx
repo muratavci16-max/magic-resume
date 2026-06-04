@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "@/i18n/compat/client";
 
 interface AlignSelectorProps {
   value: "left" | "center" | "right";
@@ -7,6 +8,7 @@ interface AlignSelectorProps {
 }
 
 const AlignSelector: React.FC<AlignSelectorProps> = ({ value, onChange }) => {
+  const t = useTranslations("workbench.align");
   const layouts = [
     {
       value: "left",
@@ -24,7 +26,7 @@ const AlignSelector: React.FC<AlignSelectorProps> = ({ value, onChange }) => {
           <rect x="27" y="29" width="13" height="2" className="fill-current" />
         </svg>
       ),
-      tooltip: "左对齐",
+      tooltip: t("left"),
     },
     {
       value: "center",
@@ -48,7 +50,7 @@ const AlignSelector: React.FC<AlignSelectorProps> = ({ value, onChange }) => {
           <rect x="17" y="35" width="14" height="2" className="fill-current" />
         </svg>
       ),
-      tooltip: "居中",
+      tooltip: t("center"),
     },
     {
       value: "right",
@@ -66,7 +68,7 @@ const AlignSelector: React.FC<AlignSelectorProps> = ({ value, onChange }) => {
           <rect x="8" y="29" width="13" height="2" className="fill-current" />
         </svg>
       ),
-      tooltip: "右对齐",
+      tooltip: t("right"),
     },
   ];
 

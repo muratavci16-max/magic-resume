@@ -5,6 +5,7 @@ import { useResumeStore } from "@/store/useResumeStore";
 import { cn } from "@/lib/utils";
 import BasicPanel from "./basic/BasicPanel";
 import { SectionIcon } from "./layout/SectionIcon";
+import { useTranslations } from "@/i18n/compat/client";
 import EducationPanel from "./education/EducationPanel";
 import ProjectPanel from "./project/ProjectPanel";
 import ExperiencePanel from "./experience/ExperiencePanel";
@@ -21,6 +22,7 @@ import {
 
 export function EditPanel() {
   const { activeResume, updateMenuSections } = useResumeStore();
+  const tEditPanel = useTranslations("workbench.editPanel");
   if (!activeResume) return;
   const { activeSection = "", menuSections = [] } = activeResume || {};
 
@@ -105,7 +107,7 @@ export function EditPanel() {
                       <Pencil size={16} className="text-primary" />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>点击文字部分即可聚焦编辑</p>
+                      <p>{tEditPanel("tipFocusText")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

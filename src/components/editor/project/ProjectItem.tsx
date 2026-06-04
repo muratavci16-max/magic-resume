@@ -105,6 +105,7 @@ const ProjectEditor: React.FC<ProjectEditorProps> = ({ project, onSave }) => {
 const ProjectItem = ({ project }: { project: Project }) => {
   const { updateProjects, deleteProject, setDraggingProjectId } =
     useResumeStore();
+  const tFallback = useTranslations("workbench.fallbacks");
   const dragControls = useDragControls();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -195,7 +196,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
                 "text-gray-700 dark:text-neutral-200"
               )}
             >
-              {project.name || "未命名项目"}
+              {project.name || tFallback("projectName")}
             </h3>
           </div>
           <div className="flex items-center gap-2 ml-4 shrink-0">

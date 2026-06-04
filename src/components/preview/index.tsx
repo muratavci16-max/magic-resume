@@ -24,14 +24,15 @@ const PageBreakLine = React.memo(
     pageNumber,
     contentPerPagePx,
     pagePadding,
+    label,
   }: {
     pageNumber: number;
     contentPerPagePx: number;
     pagePadding: number;
+    label: string;
   }) => {
-    // 预览中 #resume-preview 有 padding-top，内容从 pagePadding 位置开始
-    // 每页能容纳 contentPerPagePx 高度的内容（与 Puppeteer PDF margin 一致）
-    // 第 N 页结束位置 = pagePadding + N * contentPerPagePx
+    // Preview: #resume-preview has padding-top; content starts at pagePadding.
+    // Each page holds contentPerPagePx of content (matches Puppeteer PDF margins).
     const top = pagePadding + pageNumber * contentPerPagePx;
 
     return (
@@ -40,9 +41,9 @@ const PageBreakLine = React.memo(
         style={{ top: `${top}px` }}
       >
         <div className="relative w-full">
-          <div className="absolute w-full border-t-2 border-dashed border-red-400" />
-          <div className="absolute right-0 -top-6 text-xs text-red-500">
-            第{pageNumber}页结束
+          <div className="absolute w-full border-t border-dashed border-brand-orange/50" />
+          <div className="absolute right-0 -top-5 text-[10px] font-medium uppercase tracking-wider text-brand-orange/80">
+            {label}
           </div>
         </div>
       </div>
@@ -289,6 +290,7 @@ const PreviewPanel = React.forwardRef<HTMLDivElement, PreviewPanelProps>(
                               pageNumber={pageNumber}
                               contentPerPagePx={contentPerPagePx}
                               pagePadding={pagePadding}
+                              label={t("pageBreak", { page: pageNumber })}
                             />
                           );
                         }

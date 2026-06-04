@@ -71,7 +71,7 @@ export function UnifiedDateRangeInput({
       `${d.year}/${d.month.toString().padStart(2, "0")}`;
 
     const startStr = newStart ? format(newStart) : "";
-    const endStr = isPresent ? (value.includes("至今") ? "至今" : "Present") : (newEnd ? format(newEnd) : "");
+    const endStr = isPresent ? "Present" : (newEnd ? format(newEnd) : "");
 
     if (!startStr && !endStr) {
       onChange("");

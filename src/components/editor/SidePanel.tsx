@@ -33,12 +33,6 @@ import { STANDARD_MODULES } from "@/config/modules";
 import { DEFAULT_TEMPLATES } from "@/config";
 import { getFontOptions, normalizeFontFamily } from "@/utils/fonts";
 
-const lineHeightOptions = [
-  { value: "normal", label: "默认" },
-  { value: "relaxed", label: "适中" },
-  { value: "loose", label: "宽松" },
-];
-
 function SettingCard({
   icon: Icon,
   title,
@@ -143,7 +137,7 @@ export function SidePanel() {
     const newSection = {
       id: sectionId,
       title: sectionId,
-      icon: "➕",
+      icon: "Plus",
       enabled: true,
       order: menuSections.length,
     };

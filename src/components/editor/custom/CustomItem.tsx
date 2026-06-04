@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useResumeStore } from "@/store/useResumeStore";
+import { useTranslations } from "@/i18n/compat/client";
 import { GripVertical, Eye, EyeOff, ChevronDown, Trash2 } from "lucide-react";
 import Field from "../Field";
 
@@ -20,6 +21,7 @@ const CustomItemEditor = ({
   item: CustomItemType;
   onSave: (item: CustomItemType) => void;
 }) => {
+  const t = useTranslations("workbench.customPanel");
   const handleChange = (field: keyof CustomItemType, value: string) => {
     onSave({ ...item, [field]: value });
   };
@@ -29,33 +31,33 @@ const CustomItemEditor = ({
       <div className="grid gap-5">
         <div className="grid grid-cols-2 gap-4">
           <Field
-            label="标题"
+            label={t("labels.title")}
             value={item.title}
             onChange={(value) => handleChange("title", value)}
-            placeholder="标题"
+            placeholder={t("placeholders.title")}
           />
           <Field
-            label="副标题"
+            label={t("labels.subtitle")}
             value={item.subtitle}
             onChange={(value) => handleChange("subtitle", value)}
-            placeholder="副标题"
+            placeholder={t("placeholders.subtitle")}
           />
         </div>
 
         <Field
-          label="时间范围"
+          label={t("labels.dateRange")}
           value={item.dateRange}
           onChange={(value) => handleChange("dateRange", value)}
           type="date-range"
-          placeholder="例如: 2023.01 - 2024.01"
+          placeholder={t("placeholders.dateRange")}
         />
 
         <Field
-          label="详细描述"
+          label={t("labels.description")}
           value={item.description}
           onChange={(value) => handleChange("description", value)}
           type="editor"
-          placeholder="请输入详细描述..."
+          placeholder={t("placeholders.description")}
         />
       </div>
     </div>
@@ -70,6 +72,7 @@ const CustomItem = ({
   sectionId: string;
 }) => {
   const { updateCustomItem, removeCustomItem } = useResumeStore();
+  const t = useTranslations("workbench.customPanel");
   const dragControls = useDragControls();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -136,7 +139,7 @@ const CustomItem = ({
                  "font-medium truncate text-foreground"
               )}
             >
-              {item.title || "未命名模块"}
+              {item.title || t("fallback.untitledModule")}
             </h3>
             {item.subtitle && (
               <p

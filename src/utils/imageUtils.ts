@@ -33,7 +33,7 @@ export const compressImage = (
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         if (!ctx) {
-          reject(new Error("无法创建Canvas上下文"));
+          reject(new Error("Could not create canvas context"));
           return;
         }
         ctx.drawImage(img, 0, 0, width, height);
@@ -42,11 +42,11 @@ export const compressImage = (
         resolve(dataUrl);
       };
       img.onerror = () => {
-        reject(new Error("图片加载失败"));
+        reject(new Error("Failed to load image"));
       };
     };
     reader.onerror = () => {
-      reject(new Error("文件读取失败"));
+      reject(new Error("Failed to read file"));
     };
   });
 };
