@@ -90,7 +90,19 @@ export function useJobMatch() {
         let msg = t("error.generic");
         try {
           const data = await response.json();
-          if (data?.error?.message) msg = data.error.message;
+          const code = data?.error?.code as string | undefined;
+          // Map known server-side error codes to translated messages.
+          // Falls back to whatever the server sent or generic text.
+          if (code) {
+            const translated = t(`error.${code}`);
+            if (translated && !translated.startsWith("jobMatch.error.")) {
+              msg = translated;
+            } else if (data?.error?.message) {
+              msg = data.error.message;
+            }
+          } else if (data?.error?.message) {
+            msg = data.error.message;
+          }
         } catch {
           /* ignore */
         }
@@ -98,7 +110,10 @@ export function useJobMatch() {
         return false;
       }
 
-      const payload = (await response.json()) as { result?: JobMatchResult };
+      const payload = (await response.json()) as {
+        result?: JobMatchResult;
+        jobInputSource?: "url" | "html" | "text";
+      };
       const raw = payload.result;
       if (!raw || !raw.proposals) {
         setError(t("error.parse"));
@@ -106,7 +121,7 @@ export function useJobMatch() {
       }
 
       const proposals = buildProposals(raw.proposals);
-      setResult(raw, proposals);
+      setResult(raw, proposals, payload.jobInputSource ?? null);
       return true;
     } catch (e) {
       setError(t("error.generic"));

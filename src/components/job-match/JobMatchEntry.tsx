@@ -9,7 +9,8 @@ import {
   Loader2,
   ChevronDown,
   KeyRound,
-  Briefcase
+  Briefcase,
+  ShieldCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "@/i18n/compat/client";
@@ -124,6 +125,10 @@ export function JobMatchEntry() {
                   rows={4}
                   className="resize-none text-xs bg-background border-border/70 focus-visible:ring-brand-orange/30 focus-visible:border-brand-orange/50 mt-1"
                 />
+                <p className="text-[10px] text-muted-foreground leading-relaxed mt-1.5 flex items-start gap-1.5">
+                  <ShieldCheck className="w-3 h-3 mt-0.5 shrink-0 text-brand-orange/70" />
+                  <span>{t("expanded.linkedinHint")}</span>
+                </p>
               </div>
 
               {/* Primary CTA */}

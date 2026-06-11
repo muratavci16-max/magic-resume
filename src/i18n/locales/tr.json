@@ -959,7 +959,8 @@
       "title": "Modül durumu",
       "subtitle": "Zorunlu modüller dolu olmadan ilerleyemezsiniz",
       "linkedinLabel": "İlan bağlantısı veya açıklaması",
-      "linkedinPlaceholder": "LinkedIn ilan bağlantısını veya ilanın açıklamasını buraya yapıştırın",
+      "linkedinPlaceholder": "LinkedIn ilan bağlantısını yapıştırın — ya da ilan açıklamasını kopyalayıp buraya yapıştırın.\nSadece ilanın açıklama kısmı okunur, sayfanın geri kalanı dikkate alınmaz.",
+      "linkedinHint": "LinkedIn ilan bağlantısı yapıştırabilir veya sadece ilanın açıklama kısmını kopyalayabilirsiniz. Yalnızca ilan açıklaması okunur — sayfanın geri kalanı asla.",
       "requiredBadge": "Zorunlu",
       "optionalBadge": "Opsiyonel",
       "status": {
@@ -1010,7 +1011,16 @@
     "error": {
       "generic": "CV ilana göre düzenlenemedi. Lütfen tekrar deneyin.",
       "parse": "AI yanıtı işlenemedi. Lütfen tekrar deneyin.",
-      "configRequired": "Önce AI Ayarları'ndan bir sağlayıcı bağlayın"
+      "configRequired": "Önce AI Ayarları'ndan bir sağlayıcı bağlayın",
+      "fetch_failed": "Bağlantı yüklenemedi. Site isteği engelliyor — lütfen ilan açıklamasını metin olarak yapıştırın.",
+      "login_wall": "Bu sayfa için giriş gerekiyor. İlanı açıp açıklamayı buraya yapıştırın.",
+      "no_description": "Sayfada ilan açıklaması bulunamadı. Lütfen açıklamayı metin olarak yapıştırın.",
+      "too_short": "Daha uzun bir ilan açıklaması ekleyin (en az birkaç cümle)."
+    },
+    "sourceBadge": {
+      "url": "Bağlantıdan çekildi",
+      "html": "HTML'den çıkarıldı",
+      "text": "Yapıştırılan metinden okundu"
     },
     "missingConfig": {
       "title": "AI Bağlantısı Gerekli",
