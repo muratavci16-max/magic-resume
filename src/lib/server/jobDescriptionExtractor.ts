@@ -6,6 +6,12 @@
 const COMMON_UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";
 
+// LinkedIn aggressively blocks server-side scraping (returns HTTP 999 or
+// redirects to authwall). We proxy LinkedIn URLs through a small headless
+// browser endpoint that returns the clean job description as JSON.
+const LINKEDIN_SCRAPER_API =
+  "https://muratmurat16-linkedin-desc.hf.space/api/scrape";
+
 // Selectors known to wrap the actual job-posting body across job boards.
 // Order matters — the most specific selectors come first.
 const CLASS_SELECTORS = [
@@ -63,6 +69,15 @@ export function isProbablyUrl(text: string): boolean {
   try {
     const u = new URL(t);
     return u.protocol === "http:" || u.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function isLinkedinUrl(text: string): boolean {
+  try {
+    const u = new URL(text.trim());
+    return /(?:^|\.)linkedin\.com$/i.test(u.hostname);
   } catch {
     return false;
   }
@@ -174,6 +189,49 @@ export function looksLikeLoginWall(html: string): boolean {
   return LOGIN_WALL_MARKERS.some((m) => lower.includes(m));
 }
 
+// Call our LinkedIn scraper proxy. Returns the clean text_content on success,
+// null on any failure (HTTP error, malformed JSON, missing fields, timeout).
+// We never throw — the caller falls back to direct fetch on null.
+async function fetchLinkedinViaScraper(url: string): Promise<string | null> {
+  const ac = new AbortController();
+  // The scraper spins up a headless browser per request; give it room.
+  const t = setTimeout(() => ac.abort(), 20_000);
+  try {
+    const apiUrl = `${LINKEDIN_SCRAPER_API}?url=${encodeURIComponent(url)}`;
+    const res = await fetch(apiUrl, {
+      signal: ac.signal,
+      headers: { Accept: "application/json" }
+    });
+    if (!res.ok) return null;
+
+    const data = (await res.json()) as {
+      status?: string;
+      data?: { text_content?: string };
+    };
+    if (data?.status !== "success") return null;
+
+    const raw = data.data?.text_content;
+    if (!raw || typeof raw !== "string") return null;
+
+    // Strip the "Show more" / "Show less" trailing affordances that LinkedIn
+    // appends to its expander, then collapse excess whitespace.
+    const cleaned = raw
+      .replace(/\bShow more\b/gi, "")
+      .replace(/\bShow less\b/gi, "")
+      .replace(/ /g, " ")
+      .replace(/[ \t]{2,}/g, " ")
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+
+    return cleaned.length > 50 ? cleaned : null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
 async function fetchPageHtml(url: string): Promise<string> {
   // 10s timeout via AbortController
   const ac = new AbortController();
@@ -208,6 +266,16 @@ export async function normalizeJobInput(input: string): Promise<NormalizeResult>
   if (trimmed.length < 30) return { ok: false, reason: "too_short" };
 
   if (isProbablyUrl(trimmed)) {
+    // LinkedIn blocks direct fetch — go through our scraper proxy first.
+    // On any scraper failure we still fall through to the direct fetch below
+    // so other job boards (Indeed, Glassdoor, kariyer.net) keep working.
+    if (isLinkedinUrl(trimmed)) {
+      const fromScraper = await fetchLinkedinViaScraper(trimmed);
+      if (fromScraper) {
+        return { ok: true, description: fromScraper, source: "url" };
+      }
+    }
+
     try {
       const html = await fetchPageHtml(trimmed);
       if (looksLikeLoginWall(html)) {
