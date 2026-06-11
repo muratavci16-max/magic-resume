@@ -58,8 +58,10 @@ export function JobMatchDialog() {
     result,
     proposals,
     setProposalStatus,
-    acceptAllPending
+    acceptAllPending,
+    jobInputSource
   } = useJobMatchStore();
+  const tSource = useTranslations("jobMatch.sourceBadge");
   const { run } = useJobMatch();
   const apply = useApplyJobMatch();
 
@@ -180,9 +182,17 @@ export function JobMatchDialog() {
             </div>
           </div>
 
-          <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-700 dark:text-emerald-400 font-medium w-fit">
-            <ShieldCheck className="w-3 h-3" />
-            {t("preservedNotice")}
+          <div className="mt-3 flex items-center gap-2 flex-wrap">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
+              <ShieldCheck className="w-3 h-3" />
+              {t("preservedNotice")}
+            </span>
+            {result && jobInputSource && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-[11px] text-brand-purple font-medium">
+                <Briefcase className="w-3 h-3" />
+                {tSource(jobInputSource)}
+              </span>
+            )}
           </div>
         </DialogHeader>
 
@@ -564,16 +574,26 @@ function ErrorState({
   retryLabel: string;
   onRetry: () => void;
 }) {
+  const { closeDialog } = useJobMatchStore();
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <div className="w-12 h-12 rounded-full bg-destructive/10 text-destructive flex items-center justify-center mb-4">
         <AlertCircle className="w-6 h-6" />
       </div>
-      <p className="text-sm text-foreground mb-4 max-w-md">{message}</p>
-      <Button variant="outline" onClick={onRetry} className="rounded-lg">
-        <RotateCw className="w-3.5 h-3.5 mr-1.5" />
-        {retryLabel}
-      </Button>
+      <p className="text-sm text-foreground mb-5 max-w-md leading-relaxed">{message}</p>
+      <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          onClick={closeDialog}
+          className="rounded-lg"
+        >
+          Edit description
+        </Button>
+        <Button onClick={onRetry} className="rounded-lg bg-brand-purple text-white hover:bg-brand-purple/90">
+          <RotateCw className="w-3.5 h-3.5 mr-1.5" />
+          {retryLabel}
+        </Button>
+      </div>
     </div>
   );
 }

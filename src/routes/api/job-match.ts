@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AIModelType, AI_MODEL_CONFIGS } from "@/config/ai";
 import { formatGeminiErrorMessage, getGeminiModelInstance } from "@/lib/server/gemini";
+import { normalizeJobInput } from "@/lib/server/jobDescriptionExtractor";
 
 const SYSTEM_PROMPT = `You tailor resumes to specific job postings. You receive a job description and the candidate's resume sections, and you return improved copy that better matches the role — without inventing facts or changing the candidate's identity.
 
@@ -96,7 +97,7 @@ export const Route = createFileRoute("/api/job-match")({
 
           if (!jobDescription || jobDescription.trim().length < 30) {
             return Response.json(
-              { error: { message: "Job description is too short" } },
+              { error: { code: "too_short", message: "Job description is too short" } },
               { status: 400 }
             );
           }
@@ -104,19 +105,44 @@ export const Route = createFileRoute("/api/job-match")({
           const modelConfig = AI_MODEL_CONFIGS[modelType];
           if (!modelConfig) {
             return Response.json(
-              { error: { message: "Invalid model type" } },
+              { error: { code: "invalid_model", message: "Invalid model type" } },
               { status: 400 }
             );
           }
 
           if (!resume || typeof resume !== "object" || Object.keys(resume).length === 0) {
             return Response.json(
-              { error: { message: "No resume sections provided" } },
+              { error: { code: "no_resume", message: "No resume sections provided" } },
               { status: 400 }
             );
           }
 
-          const userPrompt = buildUserPrompt(jobDescription, resume);
+          // Pull ONLY the real job description out of whatever was pasted
+          // (URL / HTML / plain text). Never let the AI see surrounding noise.
+          const normalized = await normalizeJobInput(jobDescription);
+          if (!normalized.ok) {
+            const messages: Record<string, string> = {
+              too_short: "Job description is too short.",
+              fetch_failed:
+                "Could not load the URL. The site is blocking the request — please paste the job description text instead.",
+              login_wall:
+                "This page requires sign-in. Open the posting and paste the description text here.",
+              no_description:
+                "Could not find a job description in the page. Please paste the description text directly."
+            };
+            return Response.json(
+              {
+                error: {
+                  code: normalized.reason,
+                  message: messages[normalized.reason] ?? "Job description could not be processed.",
+                  detail: normalized.detail
+                }
+              },
+              { status: 400 }
+            );
+          }
+
+          const userPrompt = buildUserPrompt(normalized.description, resume);
 
           let rawResponse: string;
 
@@ -184,7 +210,11 @@ export const Route = createFileRoute("/api/job-match")({
             );
           }
 
-          return Response.json({ result: parsed });
+          return Response.json({
+            result: parsed,
+            jobInputSource: normalized.source,
+            jobInputLength: normalized.description.length
+          });
         } catch (error) {
           console.error("Job match error:", error);
           return Response.json(

@@ -959,7 +959,8 @@
       "title": "Section readiness",
       "subtitle": "Required sections must be filled before tailoring",
       "linkedinLabel": "Job posting URL or description",
-      "linkedinPlaceholder": "Paste a LinkedIn job posting URL or full description here",
+      "linkedinPlaceholder": "Paste a LinkedIn job URL — or copy the description text and paste it here.\nOnly the actual job description will be used; surrounding page content is ignored.",
+      "linkedinHint": "Paste a LinkedIn job URL OR copy just the job description text. We only read the job description block — never the rest of the page.",
       "requiredBadge": "Required",
       "optionalBadge": "Optional",
       "status": {
@@ -1010,7 +1011,16 @@
     "error": {
       "generic": "Could not tailor the resume. Please try again.",
       "parse": "Could not parse AI response. Try once more.",
-      "configRequired": "Connect an AI provider in AI Settings first"
+      "configRequired": "Connect an AI provider in AI Settings first",
+      "fetch_failed": "Could not load the URL. The site is blocking the request — please paste the job description text instead.",
+      "login_wall": "This page requires sign-in. Open the posting, copy the description and paste it here.",
+      "no_description": "Could not find a job description in the page. Please paste the description text directly.",
+      "too_short": "Add a longer job description (at least a few sentences)."
+    },
+    "sourceBadge": {
+      "url": "Fetched from URL",
+      "html": "Extracted from HTML",
+      "text": "Read from pasted text"
     },
     "missingConfig": {
       "title": "AI Connection Required",

@@ -18,6 +18,8 @@ export function proposalKey(sectionId: string, itemId?: string): ProposalKey {
   return itemId ? `${sectionId}:${itemId}` : sectionId;
 }
 
+export type JobInputSource = "url" | "html" | "text";
+
 interface JobMatchState {
   expanded: boolean;
   dialogOpen: boolean;
@@ -26,6 +28,7 @@ interface JobMatchState {
   error: string | null;
   result: JobMatchResult | null;
   proposals: Record<ProposalKey, ProposalState>;
+  jobInputSource: JobInputSource | null;
 
   toggleExpanded: () => void;
   setExpanded: (v: boolean) => void;
@@ -34,7 +37,11 @@ interface JobMatchState {
   setJobDescription: (text: string) => void;
   setAnalyzing: (v: boolean) => void;
   setError: (msg: string | null) => void;
-  setResult: (result: JobMatchResult, proposals: Record<ProposalKey, ProposalState>) => void;
+  setResult: (
+    result: JobMatchResult,
+    proposals: Record<ProposalKey, ProposalState>,
+    source?: JobInputSource | null
+  ) => void;
   setProposalStatus: (key: ProposalKey, status: ProposalStatus) => void;
   acceptAllPending: () => void;
   reset: () => void;
@@ -47,7 +54,8 @@ const initial = {
   isAnalyzing: false,
   error: null,
   result: null as JobMatchResult | null,
-  proposals: {} as Record<ProposalKey, ProposalState>
+  proposals: {} as Record<ProposalKey, ProposalState>,
+  jobInputSource: null as JobInputSource | null
 };
 
 export const useJobMatchStore = create<JobMatchState>()((set) => ({
@@ -59,8 +67,14 @@ export const useJobMatchStore = create<JobMatchState>()((set) => ({
   setJobDescription: (text) => set({ jobDescription: text }),
   setAnalyzing: (v) => set({ isAnalyzing: v, error: v ? null : undefined }),
   setError: (msg) => set({ error: msg, isAnalyzing: false }),
-  setResult: (result, proposals) =>
-    set({ result, proposals, isAnalyzing: false, error: null }),
+  setResult: (result, proposals, source = null) =>
+    set({
+      result,
+      proposals,
+      jobInputSource: source,
+      isAnalyzing: false,
+      error: null
+    }),
   setProposalStatus: (key, status) =>
     set((s) => ({
       proposals: s.proposals[key]
