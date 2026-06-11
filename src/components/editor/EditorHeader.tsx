@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "@/i18n/compat/client";
-import { AlertCircle, ShieldCheck, ShieldAlert, Edit2 } from "lucide-react";
+import { AlertCircle, ShieldCheck, ShieldAlert, Edit2, History } from "lucide-react";
+import { SnapshotHistory } from "@/components/snapshot/SnapshotHistory";
+import { useSnapshotStore } from "@/store/useSnapshotStore";
 import { motion } from "framer-motion";
 import { useRouter } from "@/lib/navigation";
 import { Input } from "@/components/ui/input";
@@ -36,6 +38,10 @@ export function EditorHeader({ isMobile }: EditorHeaderProps) {
   const { errors, selectError } = useGrammarCheck();
   const router = useRouter();
   const t = useTranslations();
+  const [snapshotsOpen, setSnapshotsOpen] = useState(false);
+  const snapshotCount = useSnapshotStore((s) =>
+    activeResume?.id ? s.byResume[activeResume.id]?.length ?? 0 : 0
+  );
   const visibleSections = menuSections
     ?.filter((section) => section.enabled)
     .sort((a, b) => a.order - b.order);
@@ -162,12 +168,37 @@ export function EditorHeader({ isMobile }: EditorHeaderProps) {
              </div>
           )}
 
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => setSnapshotsOpen(true)}
+                  className="relative w-9 h-9 rounded-md hover:bg-accent/60 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
+                  aria-label="Version history"
+                >
+                  <History className="w-[1.1rem] h-[1.1rem]" />
+                  {snapshotCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full bg-brand-purple text-white text-[9px] font-semibold flex items-center justify-center">
+                      {snapshotCount > 99 ? "99+" : snapshotCount}
+                    </span>
+                  )}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <span className="text-xs">{t("snapshots.headerTooltip")}</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <ThemeToggle></ThemeToggle>
           <div className="md:flex items-center ">
             <PdfExport />
           </div>
         </div>
       </div>
+
+      <SnapshotHistory open={snapshotsOpen} onOpenChange={setSnapshotsOpen} />
     </motion.header>
   );
 }

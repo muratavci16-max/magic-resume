@@ -179,6 +179,25 @@ export interface MenuSection {
   order: number;
 }
 
+// A translated snapshot of the editable copy of the resume. The translation
+// only ever covers fields with prose (basic.title, summary, skills HTML,
+// experience.details, education.description, project.description). Names,
+// company names, dates, schools, contact info and URLs are preserved.
+export interface ResumeTranslation {
+  translatedAt: number;
+  staleSourceUpdatedAt?: string; // updatedAt at translation time — for stale detection
+  basic?: {
+    title?: string;
+    location?: string;
+    employementStatus?: string;
+  };
+  selfEvaluationContent?: string;
+  skillContent?: string;
+  experience?: Array<{ id: string; details?: string }>;
+  education?: Array<{ id: string; description?: string }>;
+  projects?: Array<{ id: string; description?: string }>;
+}
+
 export interface ResumeData {
   id: string;
   title: string;
@@ -197,6 +216,9 @@ export interface ResumeData {
   draggingProjectId: string | null;
   menuSections: MenuSection[];
   globalSettings: GlobalSettings;
+  // Mirror translations of the resume content, keyed by ISO 639-1 code.
+  // Not editable directly — produced by AI and refreshed on demand.
+  translations?: Record<string, ResumeTranslation>;
 }
 
 export interface ResumeStore {

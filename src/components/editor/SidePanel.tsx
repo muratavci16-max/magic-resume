@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout, Type, SpaceIcon, Palette, Zap, BarChart3, ArrowRight } from "lucide-react";
 import { SectionIcon } from "./layout/SectionIcon";
 import { JobMatchEntry } from "@/components/job-match/JobMatchEntry";
+import { CoverLetterEntry } from "@/components/cover-letter/CoverLetterEntry";
 import debounce from "lodash/debounce";
 import { useTranslations } from "@/i18n/compat/client";
 import { useATSStore } from "@/store/useATSStore";
@@ -186,6 +187,9 @@ export function SidePanel() {
 
         {/* Tailor to Job entry — same size, just below ATS */}
         <JobMatchEntry />
+
+        {/* Cover Letter Generator entry */}
+        <CoverLetterEntry />
 
         <SettingCard icon={Layout} title={t("layout.title")}>
           <LayoutSetting

@@ -952,6 +952,124 @@
     "menuLabel": "ATS Analizi",
     "menuDescription": "CV'nizi ATS'ye göre puanlayın"
   },
+  "translation": {
+    "pickerTooltip": "Bu CV'yi başka bir dilde görüntüle",
+    "pickerHeader": "Önizleme dili",
+    "sourceBadge": "Kaynak",
+    "sourceHint": "Yazdığınız orijinal dil",
+    "addLanguage": "Dil ekle",
+    "addHint": "AI, ad, şirket ve tarihleri koruyarak çevirir",
+    "stale": "Kaynak güncellendi — çeviriyi yenileyin",
+    "upToDate": "Güncel",
+    "refresh": "Çeviriyi yenile",
+    "remove": "Çeviriyi kaldır",
+    "addDialog": {
+      "title": "CV'yi çevir",
+      "subtitle": "Bir dil seçin. Orijinal değişmez — çeviriler ayrı saklanır ve önizlemede istediğiniz zaman değiştirilebilir.",
+      "add": "Çeviri ekle",
+      "alreadyAdded": "Zaten eklendi",
+      "translating": "CV'niz çevriliyor…",
+      "close": "Kapat"
+    },
+    "toast": {
+      "added": "Çeviri hazır",
+      "removed": "Çeviri kaldırıldı"
+    },
+    "error": {
+      "generic": "CV çevrilemedi. Lütfen tekrar deneyin.",
+      "parse": "AI yanıtı işlenemedi. Lütfen tekrar deneyin.",
+      "configRequired": "Önce bir AI sağlayıcısı bağlayın",
+      "bad_language": "Geçersiz dil kodu"
+    }
+  },
+  "coverLetter": {
+    "menuLabel": "Kapak Mektubu",
+    "menuDescription": "AI ile, ilana özel olarak yazılır",
+    "jobInputProvided": "İlan açıklaması hazır",
+    "jobInputProvidedHint": "İlana Uygun Düzenle bölümüne yapıştırdığınız ilanı kullanacağız.",
+    "jobInputMissingTitle": "Önce bir ilan ekleyin",
+    "jobInputMissingHint": "Yukarıdaki İlana Uygun Düzenle bölümünü açın ve LinkedIn bağlantısını ya da açıklamayı yapıştırın.",
+    "toneLabel": "Ton",
+    "lengthLabel": "Uzunluk",
+    "tones": {
+      "formal": "Resmi",
+      "friendly": "Samimi",
+      "confident": "Kendinden emin"
+    },
+    "lengths": {
+      "short": "Kısa",
+      "medium": "Orta",
+      "long": "Uzun"
+    },
+    "generateCta": "Kapak mektubu oluştur",
+    "generating": "Oluşturuluyor…",
+    "savedTitle": "Kaydedilmiş mektuplar",
+    "untitled": "Adsız kapak mektubu",
+    "missingConfig": {
+      "title": "AI Bağlantısı Gerekli",
+      "description": "Kapak mektupları yapılandırdığınız AI sağlayıcısı tarafından oluşturulur.",
+      "cta": "AI Ayarlarını Aç"
+    },
+    "dialog": {
+      "title": "Kapak mektubunuz",
+      "subtitle": "AI hem CV'nizi hem de yapıştırdığınız ilanı kullandı. Ad, şirket ve tarihler değiştirilmedi.",
+      "loading": "Kapak mektubunuz yazılıyor…",
+      "loadingHint": "AI sağlayıcınıza bağlı olarak genellikle 10–25 saniye sürer.",
+      "actions": {
+        "copy": "Kopyala",
+        "downloadTxt": ".txt indir",
+        "regenerate": "Yeniden oluştur",
+        "save": "Kaydet",
+        "close": "Kapat"
+      },
+      "toast": {
+        "copied": "Kapak mektubu panoya kopyalandı",
+        "copyFailed": "Panoya kopyalanamadı",
+        "saved": "Kapak mektubu kaydedildi"
+      }
+    },
+    "error": {
+      "generic": "Kapak mektubu oluşturulamadı. Lütfen tekrar deneyin.",
+      "parse": "AI yanıtı işlenemedi. Lütfen tekrar deneyin.",
+      "configRequired": "Önce AI Ayarları'ndan bir sağlayıcı bağlayın",
+      "too_short": "Önce daha uzun bir ilan açıklaması ekleyin.",
+      "fetch_failed": "Bağlantı yüklenemedi. Açıklamayı metin olarak yapıştırın.",
+      "login_wall": "Bu sayfa için giriş gerekiyor. Açıklamayı buraya yapıştırın.",
+      "no_description": "Sayfada ilan açıklaması bulunamadı. Lütfen doğrudan yapıştırın."
+    }
+  },
+  "snapshots": {
+    "title": "Sürüm geçmişi",
+    "subtitle": "CV'nizi istediğiniz önceki bir noktaya geri alın. CV başına en fazla 25 anlık görüntü tutulur.",
+    "headerTooltip": "Sürüm geçmişi",
+    "empty": {
+      "title": "Henüz anlık görüntü yok",
+      "description": "AI değişikliklerinden önce CV'niz otomatik olarak anlık görüntülenir. İstediğiniz zaman manuel olarak da bir anlık görüntü oluşturabilirsiniz."
+    },
+    "actions": {
+      "snapshotNow": "Şimdi anlık görüntü al",
+      "restore": "Geri yükle",
+      "delete": "Sil"
+    },
+    "triggers": {
+      "manual": "Manuel anlık görüntü",
+      "tailor": "İlana göre düzenleme öncesi",
+      "polish": "AI iyileştirme öncesi",
+      "translate": "Çeviri öncesi",
+      "import": "İçe aktarma öncesi",
+      "beforeRestore": "Geri yükleme öncesi"
+    },
+    "restoreDialog": {
+      "title": "Bu sürüm geri yüklensin mi?",
+      "body": "Mevcut CV'niz bu anlık görüntüyle değiştirilecek. Mevcut durumunuzu da bir anlık görüntü olarak kaydedeceğiz, böylece bu işlemi geri alabilirsiniz.",
+      "confirm": "Geri yükle",
+      "cancel": "İptal"
+    },
+    "toast": {
+      "created": "Anlık görüntü oluşturuldu",
+      "restored": "CV anlık görüntüden geri yüklendi"
+    }
+  },
   "jobMatch": {
     "menuLabel": "İlana Uygun Düzenle",
     "menuDescription": "CV'nizi seçtiğiniz ilana göre uyarlayın",

@@ -9,6 +9,9 @@ import { useAutoOnePage } from "@/hooks/useAutoOnePage";
 import { useTranslations } from "@/i18n/compat/client";
 import { normalizeFontFamily } from "@/utils/fonts";
 import ResumeTemplateComponent from "../templates";
+import { LanguagePicker } from "./LanguagePicker";
+import { useTranslationStore } from "@/store/useTranslationStore";
+import { mergeTranslation } from "@/lib/applyTranslation";
 
 interface PreviewPanelProps {
   sidePanelCollapsed: boolean;
@@ -65,7 +68,18 @@ const PreviewPanel = React.forwardRef<HTMLDivElement, PreviewPanelProps>(
     },
     ref
   ) => {
-    const { activeResume, setActiveSection } = useResumeStore();
+    const { activeResume: sourceResume, setActiveSection } = useResumeStore();
+    const viewLanguage = useTranslationStore((s) =>
+      s.getViewLanguage(sourceResume?.id)
+    );
+    // If a translation is selected for the preview, merge it on top of the
+    // source. The editor still mutates the source — translations are
+    // preview-only.
+    const activeResume = useMemo(() => {
+      if (!sourceResume) return sourceResume;
+      if (!viewLanguage || viewLanguage === "source") return sourceResume;
+      return mergeTranslation(sourceResume, viewLanguage);
+    }, [sourceResume, viewLanguage]);
     const selectedFontFamily = normalizeFontFamily(
       activeResume?.globalSettings?.fontFamily
     );
@@ -205,6 +219,11 @@ const PreviewPanel = React.forwardRef<HTMLDivElement, PreviewPanelProps>(
           fontFamily: selectedFontFamily,
         }}
       >
+        {/* Language picker floating on top-right of the preview area */}
+        <div className="absolute top-3 right-3 z-30">
+          <LanguagePicker />
+        </div>
+
         <div className="py-4 ml-4 px-4 min-h-screen flex justify-center scale-[58%] origin-top md:scale-90 md:origin-top-left">
           <div
             ref={startRef}
