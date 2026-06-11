@@ -191,6 +191,24 @@ const Field = ({
           onOpenChange={setShowPolishDialog}
           content={value || ""}
           onApply={(content) => {
+            // Snapshot before AI Polish overwrites the field — easy rollback.
+            try {
+              const {
+                useResumeStore
+              } = require("@/store/useResumeStore") as typeof import("@/store/useResumeStore");
+              const {
+                useSnapshotStore,
+                extractSnapshotData
+              } = require("@/store/useSnapshotStore") as typeof import("@/store/useSnapshotStore");
+              const resume = useResumeStore.getState().activeResume;
+              if (resume?.id) {
+                useSnapshotStore
+                  .getState()
+                  .push(resume.id, extractSnapshotData(resume), "polish");
+              }
+            } catch {
+              /* snapshot is best-effort */
+            }
             onChange(content);
           }}
         />

@@ -11,6 +11,7 @@ import { MobileWorkbench } from "@/components/mobile/MobileWorkbench";
 import { ATSAnalyzerPanel } from "@/components/ats/ATSAnalyzerPanel";
 import { useATSStore } from "@/store/useATSStore";
 import { JobMatchDialog } from "@/components/job-match/JobMatchDialog";
+import { CoverLetterDialog } from "@/components/cover-letter/CoverLetterDialog";
 import { PanelResizeHandle } from "react-resizable-panels";
 import {
   ResizableHandle,
@@ -386,6 +387,9 @@ export default function Home() {
 
       {/* Tailor-to-Job dialog */}
       <JobMatchDialog />
+
+      {/* Cover Letter dialog */}
+      <CoverLetterDialog />
     </main>
   );
 }

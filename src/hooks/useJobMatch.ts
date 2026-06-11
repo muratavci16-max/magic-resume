@@ -10,6 +10,10 @@ import {
 } from "@/store/useJobMatchStore";
 import { AI_MODEL_CONFIGS } from "@/config/ai";
 import {
+  useSnapshotStore,
+  extractSnapshotData
+} from "@/store/useSnapshotStore";
+import {
   buildJobMatchPayload,
   type JobMatchResult,
   type JobMatchProposal
@@ -220,6 +224,7 @@ export function useApplyJobMatch() {
     updateProjectsBatch
   } = useResumeStore();
   const { proposals, closeDialog, reset } = useJobMatchStore();
+  const pushSnapshot = useSnapshotStore((s) => s.push);
 
   return useCallback(() => {
     if (!activeResume) return;
@@ -229,6 +234,9 @@ export function useApplyJobMatch() {
       closeDialog();
       return;
     }
+
+    // Snapshot the current resume state BEFORE applying so the user can roll back.
+    pushSnapshot(activeResume.id, extractSnapshotData(activeResume), "tailor");
 
     const expById: Record<string, string> = {};
     const eduById: Record<string, string> = {};
@@ -280,6 +288,7 @@ export function useApplyJobMatch() {
     updateProjectsBatch,
     closeDialog,
     reset,
+    pushSnapshot,
     t
   ]);
 }
